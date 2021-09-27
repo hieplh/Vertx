@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Signup Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="css/index.css"/>
+        <script type="text/javascript" src="js/include.js"></script>
+        <style>
+            #signup-form-container {
+                width: fit-content;
+            }
+            #signup-form > label {
+                width: 100px;
+                text-align: center;
+            }
+            #signup-form > input {
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="header-container"></div>
+        <div id="signup-form-container">
+            <form id="signup-form" action="/signup" method="POST" enctype="multipart/form-data">
+                <label>Full name</label> <br/>
+                <input type="text" name="fullname" size="20"/> <br/>
+                <label>Birthday</label> <br/>
+                <input type="date" name="dob" /> <br/>
+                <label>Role</label> <br/>
+                <input type="text" name="role" size="23"/> <br/>
+                <label>Title</label> <br/>
+                <select name="title">
+                    <option>Fresher</option>
+                    <option>Junior</option>
+                    <option>Mid-level</option>
+                    <option>Senior</option>
+                </select> <br/>
+                <input type="file" name="avatar" /> <br/>
+                <div id="login-form-button">
+                    <!--<input type="button" value="signup" onclick="login()" style="float: right;"/>-->
+                    <input type="submit" value="signup" style="float: right;"/>
+                </div>
+            </form>
+        </div>
+        <script>
+            includeHTML('header-container', 'header.html');
+        </script>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>Login Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="css/index.css"/>
+        <script type="text/javascript" src="js/include.js"></script>
+        <script>
+            function login() {
+                let loginForm = new FormData(document.querySelector('form'));
+                let xhtml = new XMLHttpRequest();
+                xhtml.onload = function () {
+                    let loginForm = document.getElementById('login-form');
+                    let eleP = document.getElementsByTagName('p');
+                    if (eleP.length !== 0) {
+                        eleP[0].remove();
+                    }
+                    eleP = document.createElement('p');
+                    
+                    const err = JSON.parse(this.responseText);
+                    let eleInput = document.getElementsByTagName('input');
+                    
+                    eleP.append(err.error.errMsg);
+                    eleP.style.color = 'red';
+                    loginForm.prepend(eleP);
+                    
+                    document.getElementById('login-form-button').style.width = eleInput[0].offsetWidth;
+                };
+                xhtml.open("POST", "http://localhost:8080/login");
+                xhtml.send(loginForm);
+            }
+        </script>
+        <style>
+            #login-form-container {
+                width: fit-content;
+            }
+            #login-form > label {
+                width: 100px;
+                text-align: center;
+            }
+            #login-form > input {
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="header-container"></div>
+
+        <div id="login-form-container">
+            <form id="login-form" action="/login" method="POST">
+                <label>Username</label> <br/>
+                <input type="text" name="username" /> <br/>
+                <label>Password</label> <br/>
+                <input type="password" name="password" /> <br/>
+                <div id="login-form-button">
+                    <a href="/signup.html">Sign up</a>
+                    <input type="button" value="login" onclick="login()" style="float: right;"/>
+                </div>
+            </form>
+        </div>
+
+        <br/>
+        <script>
+            includeHTML('header-container', 'header.html');
+        </script>
+    </body>
+</html>
