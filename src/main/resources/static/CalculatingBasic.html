@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="css/index.css"/>
+        <script type="text/javascript" src="js/include.js"></script>
+    </head>
+    <body>
+        <div id="header-container"></div>
+        
+        <h1>Calculating basic 2 number</h1>
+        <div>
+            <input type="number" name="first" style="text-align: right;"/>
+            <select name="operator" style="text-align: right;">
+                <option>add</option>
+                <option>subtract</option>
+                <option>multiply</option>
+                <option>devide</option>
+            </select>
+            <input type="number" name="second" style="text-align: right;"/>
+            <button>Calculate</button>
+        </div>
+        <p id="result"></p>
+        
+        <div id="footer-container">
+            <iframe 
+                width="100%" 
+                height="300" 
+                th:src="${host + '/footer.html'}" 
+                loading="lazy" 
+                frameborder="0" 
+                scrolling="no" 
+                marginheight="0" 
+                marginwidth="0">
+            </iframe>
+        </div>
+
+        <script>
+            includeHTML('header-container', 'header.html');
+        </script>
+    </body>
+</html>

@@ -2,25 +2,17 @@ package com.example.hiep.download;
 
 import com.example.hiep.IRequestHandler;
 import com.example.hiep.MainVerticle;
-import io.vertx.core.Future;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpHeaders;
-import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.RoutingContext;
-import java.awt.PageAttributes;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class DownloadVertical extends MainVerticle implements IRequestHandler {
 
     private final String DOWNLOAD_PAGE = "static/download.html";
     private final String FILE_HERO3_DOWNLOAD_PATH = "D:\\Games\\Heroes_3 WoG 3.8.2.rar";
-    private final String FILE_KOUTETSU_MAJO_ANNEROSE_DOWNLOAD_PATH = "D:\\Games\\[Ryuublogger] Koutetsu_majo_annerose_eng.zip";
+    private final String FILE_GAMEBOY_DOWNLOAD_PATH = "D:\\Games\\VisualBoyAdvance.rar";
     private final String FILE_MEGAMAN5_DOWNLOAD_PATH = "C:\\Users\\Admin\\Downloads\\megamanx5.exe";
     private final String FILE_MOBAZ_DOWNLOAD_PATH = "C:\\Users\\Admin\\Downloads\\MobaZ3.zip";
 
@@ -36,8 +28,8 @@ public class DownloadVertical extends MainVerticle implements IRequestHandler {
 
     private void doGet(RoutingContext context) {
         try {
-            context.response().end(Files.readString(Path.of(RESOURCER_DEFAULT, DOWNLOAD_PAGE)));
-        } catch (IOException e) {
+            context.response().end(FILE_SYSTEM.readFileBlocking(RESOURCER_DEFAULT + DOWNLOAD_PAGE));
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -52,7 +44,7 @@ public class DownloadVertical extends MainVerticle implements IRequestHandler {
                 downloadUsingSendBuffer_ApplicationJson(context, FILE_MEGAMAN5_DOWNLOAD_PATH);
                 break;
             case 3:
-                downloadUsingSendBuffer_OctetStream(context, FILE_KOUTETSU_MAJO_ANNEROSE_DOWNLOAD_PATH);
+                downloadUsingSendBuffer_OctetStream(context, FILE_GAMEBOY_DOWNLOAD_PATH);
                 break;
             case 4:
                 downloadUsingSendBuffer_OctetStream(context, FILE_MOBAZ_DOWNLOAD_PATH);
@@ -95,8 +87,8 @@ public class DownloadVertical extends MainVerticle implements IRequestHandler {
 //            } catch (IOException e) {
 //                e.printStackTrace();
 //            }
-                String filename = FILE_KOUTETSU_MAJO_ANNEROSE_DOWNLOAD_PATH.substring(FILE_KOUTETSU_MAJO_ANNEROSE_DOWNLOAD_PATH.lastIndexOf("\\") + 1, FILE_KOUTETSU_MAJO_ANNEROSE_DOWNLOAD_PATH.length());
-                FILE_SYSTEM.readFile(FILE_KOUTETSU_MAJO_ANNEROSE_DOWNLOAD_PATH, handler -> {
+                String filename = FILE_GAMEBOY_DOWNLOAD_PATH.substring(FILE_GAMEBOY_DOWNLOAD_PATH.lastIndexOf("\\") + 1, FILE_GAMEBOY_DOWNLOAD_PATH.length());
+                FILE_SYSTEM.readFile(FILE_GAMEBOY_DOWNLOAD_PATH, handler -> {
                     if (handler.result() == null) {
                         System.out.println(handler.result());
                     } else {

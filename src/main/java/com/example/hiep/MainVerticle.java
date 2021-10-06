@@ -2,6 +2,7 @@ package com.example.hiep;
 
 import com.example.hiep.api.ResourcesAPI;
 import com.example.hiep.cv.ProfileVerticle;
+import com.example.hiep.demo.Calculating;
 import com.example.hiep.download.DownloadVertical;
 import com.example.hiep.error.HandleErrorVerticle;
 import com.example.hiep.helper.Constant;
@@ -86,6 +87,7 @@ public class MainVerticle extends AbstractVerticle {
         listRequestHandler.add(new LoginVertical());
         listRequestHandler.add(new SignupVertical());
         listRequestHandler.add(new DownloadVertical());
+        listRequestHandler.add(new Calculating());
 
         listRequestHandler.forEach(e -> e.handleRequest());
     }
