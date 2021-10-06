@@ -3,7 +3,6 @@ package com.example.hiep.demo;
 import com.example.hiep.IRequestHandler;
 import com.example.hiep.MainVerticle;
 import com.example.hiep.error.HandleErrorVerticle;
-import io.vertx.core.MultiMap;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.core.json.JsonObject;
